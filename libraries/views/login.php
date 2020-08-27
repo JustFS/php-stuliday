@@ -7,8 +7,6 @@ include('templates/nav.php');
 
 $root = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/';
 
-var_dump($root);
-print_r($root);
 
 // SIGNUP
 if (isset($_POST['submit-signup'])) {
@@ -48,8 +46,6 @@ if (isset($_POST['submit-signup'])) {
 	$user_pass = htmlspecialchars($_POST['user_password']);
 	$sql = $db->query("SELECT * FROM users WHERE email = '$user_email'");
 
-
-
 	if ($user = $sql->fetch()){
 			$db_id = $user['id'];
 			$db_email = $user['email'];
@@ -59,14 +55,14 @@ if (isset($_POST['submit-signup'])) {
 			$_SESSION['id'] = $db_id;
 			$_SESSION['email'] = $db_email;
 
-			$message = "<div class='blue'>Vous êtes connecté</div>";
+      $message = "<div class='blue'>Vous êtes connecté</div>";
+      header('Location: ../../index.php');
 
 		} else {
 			$message = "<div class='red'>Identifiants non reconnus.</div>";
 		}
 	} else {
 		$message = "<div class='red'>Identifiants inconnus.</div>";
-		var_dump($user);
 	}
 }
 
@@ -78,11 +74,11 @@ if (isset($_POST['submit-signup'])) {
 			<?php if (isset($message)) {
 				echo "<p> " . $message . " </p>";
 			} ?>
-			<div class="col-md-6">
-				<h1>Se connecter</h1>
+			<div class="col 6 6">
+				<h2>Se connecter</h2>
 
-				<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
-					<div class="form-group col-md-10">
+				<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST" class="form-group col 6 6">
+					<div>
 						<label for="exampleInputEmail1">Adresse e-mail</label>
 						<input type="text" name="user_email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Entrez votre mail...">
 						<small id="emailHelp" class="form-text text-muted">Votre email ne sera jamais commercialisé.</small>
@@ -91,12 +87,12 @@ if (isset($_POST['submit-signup'])) {
 						<label for="exampleInputPassword1">Password</label>
 						<input type="password" name="user_password" class="form-control" id="exampleInputPassword1" placeholder="Entrez votre mot de passe...">
 					</div>
-					<button type="submit" name="submit-login" class="btn btn-primary col-md-4 offset-3">Connexion</button>
+					<button type="submit" name="submit-login" class="btn cyan accent-3 col-md-4 offset-3">Connexion</button>
 				</form>
 			</div>
-
-			<div class="col-md-6">
-				<h1>S'inscrire</h1>
+<br/>
+			<div class="col 6 6">
+				<h2>S'inscrire</h2>
 				<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
 					<div class="form-group col-md-10">
 						<label for="exampleInputEmail2">Adresse e-mail</label>
@@ -111,7 +107,7 @@ if (isset($_POST['submit-signup'])) {
 						<label for="exampleInputPassword3">Re-type your Password</label>
 						<input type="password" name="user_password_2_signup" class="form-control" id="exampleInputPassword3" placeholder="Password">
 					</div>
-					<button type="submit" name="submit-signup" class="btn btn-primary col-md-4 offset-3">Inscription</button>
+					<button type="submit" name="submit-signup" class="btn cyan accent-3 col-md-4 offset-3">Inscription</button>
 				</form>
 			</div>
 		</div>

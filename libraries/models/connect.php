@@ -4,10 +4,10 @@
     //     header('Location: login.php');
     //     exit;
     // }
-    // if (!empty($_SESSION) && $page =='login' || isset($_GET['logout'])){
-    //     session_destroy();
-    //     header ('Location:index.php');
-    // }
+    if (isset($_GET['logout'])){
+        session_destroy();
+        header ('Location: /index.php');
+    }
     
     $servername = 'localhost'; 
     $dbname='stuliday';

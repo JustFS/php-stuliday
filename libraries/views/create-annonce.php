@@ -9,7 +9,7 @@ require('templates/nav.php');
   <h2>Déposer une annonce</h2>
 
   <div class="row center-align">
-    <form action="../models/create-annonce-post.php" method="post" class="col s12" enctype="multitype/form-data">
+    <form action="../models/create-annonce-post.php" method="post" class="col s12" enctype="multipart/form-data">
       <div class="row">
         <div class="input-field col s12">
           <input id="title" name="title" type="text" required class="validate">
@@ -17,12 +17,12 @@ require('templates/nav.php');
         </div>
 
         <div class="input-field col s6">
-          <input id="start_date" name="start_date" type="date" required class="validate">
+          <input id="start_date" name="start_date" type="date" vmax=<?= date('Y-m-d') ?> required class="validate">
           <label for="start_date">Date de début</label>
         </div>
 
         <div class="input-field col s6">
-          <input id="end_date" name="end_date" type="date" required class="validate">
+          <input id="end_date" name="end_date" type="date" vmax=<?= date('Y-m-d') ?>required class="validate">
           <label for="end_date">Date de fin</label>
         </div>
 
@@ -53,7 +53,7 @@ require('templates/nav.php');
 
         <div class="input-field col s4">
           <span>Télécharger une photo</span>
-          <input type="file" id="image_url" name="image_url" class="">
+          <input type="file" id="image_url" accept=".png,.jpeg,.jpg,.gif" name="image_url" required>
         </div>
 
         <div>
