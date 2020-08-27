@@ -17,12 +17,12 @@ require('templates/nav.php');
         </div>
 
         <div class="input-field col s6">
-          <input id="start_date" name="start_date" type="date" vmax=<?= date('Y-m-d') ?> required class="validate">
+          <input id="start_date" name="start_date" type="date" required class="validate">
           <label for="start_date">Date de début</label>
         </div>
 
         <div class="input-field col s6">
-          <input id="end_date" name="end_date" type="date" vmax=<?= date('Y-m-d') ?>required class="validate">
+          <input id="end_date" name="end_date" type="date" required class="validate">
           <label for="end_date">Date de fin</label>
         </div>
 

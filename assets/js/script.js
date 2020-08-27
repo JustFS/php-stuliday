@@ -1,10 +1,13 @@
 // date setup
 const today = new Date().toISOString().split('T')[0];
-document.getElementsByName("start_date")[0].setAttribute('min', today);
-document.getElementsByName("end_date")[0].setAttribute('min', today);
+const start = document.getElementById('start_date');
 
-// modal
-document.addEventListener('DOMContentLoaded', function() {
-  var elems = document.querySelectorAll('.modal');
-  var instances = M.Modal.init(elems, options);
-});
+document.getElementsByName("start_date")[0].setAttribute('min', today);
+
+start.addEventListener('input', (e) => {
+  let tomorrow = new Date(e.target.value);
+  tomorrow.setDate(tomorrow.getDate() + 1);
+
+  let newTomorrow = tomorrow.toISOString().split('T')[0]
+  document.getElementsByName("end_date")[0].min = newTomorrow;
+})

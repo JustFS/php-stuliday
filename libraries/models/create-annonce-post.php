@@ -49,7 +49,8 @@ if (
 
 				$sth->execute();
 
-				header('Location : ../views/lobby.php');
+        // header('Location : ../views/lobby.php');
+        echo 'ok !';
 			} else {
 				echo 'empty';
 			}
