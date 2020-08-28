@@ -1,4 +1,6 @@
-<?php require_once($_SERVER['DOCUMENT_ROOT'] . '/php-stuliday/config/config.php'); ?>
+<?php require_once($_SERVER['DOCUMENT_ROOT'] . '/php-stuliday/config/config.php'); 
+
+?>
 
 <nav class="row">
   <div class="nav-wrapper cyan accent-3">

@@ -15,7 +15,7 @@ function displayAnnonces()
       <a href="#modal<?= $annonces['id'] ?>">
         <div class="card-panel hoverable">
           <div class="card-image">
-            <img src="<?= $annonces['image_url'] ? '../../assets/uploads/' .$annonces['image_url'] : '../../assets/img/test.jpg' ?>" alt="photo-du-bien" class="responsive-img">
+            <img src="<?= $annonces['image_url'] ? '../../assets/uploads/' . $annonces['image_url'] : '../../assets/img/test.jpg' ?>" alt="photo-du-bien" class="responsive-img">
             <h5 style="text-transform: uppercase"><?= $annonces['title']; ?></h5>
             <div class="">
               <p><?= $annonces['price'] ?> €</p>
@@ -31,36 +31,64 @@ function displayAnnonces()
       </a>
     </div>
 
-
     <!-- Modal Structure -->
-    <div id="modal<?= $annonces['id'] ?>" class="modal card-panel">
-      <div class="modal-content">
+    <div id="modal<?= $annonces['id'] ?>" class="modal card-panel" style="top: 100px; width: 75%; padding: 10px 1rem; max-height: 85%">
+      <a href="#" style="font-size: 1.5rem; position: absolute; right: 1rem; top: 5px">&#10006;</a>  
+    <div class="modal-content">
         <h5 style="text-transform: uppercase" class="center-align"><?= $annonces['title']; ?></h5>
 
         <div class="row valign-wrapper">
-          <p class="col s12 m4"><?= $annonces['price'] ?> €</p>
           <p class="col s12 m4"><?= $annonces['city'] ?></p>
-          <span class="col s12 m4"><?= $annonces['address_article'] ?></span>
+          <p class="col s12 m4"><?= $annonces['address_article'] ?></p>
+          <p class="col s12 m4 cyan-text accent-3 right-align" style="font-size: 2rem"><?= $annonces['price'] ?> €</p>
         </div>
 
         <div class="row">
-          <div class="col s12 m6">Date de début : <?= $annonces['start_date'] ?></div>
-          <div class="col s12 m6">Date de fin :<?= $annonces['end_date'] ?></div>
+          <div class="col s12 m6">Date de début : <?= date('d-m-Y', strtotime($annonces['start_date'])); ?></div>
+          <div class="col s12 m6">Date de fin :<?= date('d-m-Y', strtotime($annonces['end_date'])); ?></div>
         </div>
 
         <div class="">
           <p><?= $annonces['description'] ?></p>
         </div>
 
-        <div class="container">
-          <img style="width: 100%; " class="center-align" src="<?= $annonces['image_url'] ? '../../assets/uploads/' .$annonces['image_url'] : '../../assets/img/test.jpg' ?>" class="img-responsive" alt="">
+        <div class="">
+          <img style="width: 25%; " src="<?= $annonces['image_url'] ? '../../assets/uploads/' . $annonces['image_url'] : '../../assets/img/test.jpg' ?>" class="img-responsive" alt="">
         </div>
       </div>
       <div class="modal-footer">
         <a href="#" class="btn blue accent-2">Revenir à la liste</a>
-        <a href="" class="btn cyan accent-3">Réserver</a>
+        <a href="../views/booking.php?annonceId=<?= $annonces['id'] ?>" class="btn cyan accent-3">Réserver</a>
       </div>
     </div>
+
+  <?php
+  }
+};
+
+function displayUserAnnonces()
+{
+  global $db;
+  $id = $_SESSION['id'];
+
+  $sql = $db->query("SELECT * FROM annonces WHERE author_article=$id");
+  $sql->setFetchMode(PDO::FETCH_ASSOC);
+
+  while ($annonces = $sql->fetch()) {
+  ?>
+    <tr>
+      <td><?= $annonces['title'] ?></td>
+      <td><?= date('d-m-Y', strtotime($annonces['start_date'])); ?></td>
+      <td><?= date('d-m-Y', strtotime($annonces['end_date'])); ?></td>
+      <td><?= $annonces['active'] == 1 ? 'Non' : 'Oui' ?></td>
+      <td>
+        <a href="/php-stuliday/libraries/models/update-annonce.php?id=<?= $annonces['id'] ?>" class="btn btn cyan accent-3">Modifier</a></td>
+      <td>
+        <form action="/php-stuliday/libraries/models/delete-annonce.php?id=<?= $annonces['id'] ?>" method="get">
+          <input type="submit" value="supprimer" class="btn btn cyan accent-3"></input>
+        </form>
+      </td>
+    </tr>
 
 <?php
   }

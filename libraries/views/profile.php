@@ -1,68 +1,71 @@
-<?php 
-    $page ='profile';
-    require('templates/header.php');
-    include('templates/nav.php');
-    require('../models/connect.php'); 
+<?php
+$page = 'profile';
+
+require_once('../models/connect.php');
+require('templates/header.php');
+require('templates/nav.php');
+require('../models/users.php');
+require('../models/annonces.php');
+
 ?>
 <section>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 text-center">
-                <h2 class="py-4">Mon profil :</h2>
-            </div>
-            <div class="col-md-8">
-                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-                    <div class="form-group">
-                        <label for="exampleInputEmail">Nom</label>
-                        <input type="text" class="form-control" name="nom" id="exampleInputEmail"
-                            aria-describedby="emailHelp" placeholder="Nom" value="">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword">Prénom</label>
-                        <input type="text" name="prenom" class="form-control" id="exampleInputPassword"
-                            placeholder="Prénom" value="">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail">Adresse </label>
-                        <input type="text" class="form-control" name="adress" id="exampleInputEmail"
-                            aria-describedby="emailHelp" placeholder="Adresse" value="">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail">Email address</label>
-                        <input type="email" class="form-control" name="email" id="exampleInputEmail"
-                            aria-describedby="emailHelp" value="">
-                    </div>
-                    <input type="submit" name="submit_update" class="btn btn-info" value="Mettre à jour">
-                </form>
-            </div>
-            <div class="col-md-4">
-                <a href="#" class="btn btn-primary mb-3">Publier une nouvelle annonce</a>
-                <a href="#" class="btn btn-primary mb-3 <?php  if($compteur < 1){ echo 'disabled'; } ?>"
-                    data-toggle="modal" data-target="#listingAnnonces">Voir mes annonces  <span class="badge badge-primary badge-pill">10</span>
-                    </a>
-                <a href="#" class="btn btn-primary mb-3 <?php  if($compt < 1){ echo 'disabled'; } ?>"
-                    data-toggle="modal" data-target="#listingResa">Voir mes réservations <span class="badge badge-primary badge-pill">5</span></a>
-            </div>
-            <div class="col-md-12 text-center pt-5 my-2">
-                <a class="btn btn-info back" href="annonces.php">Retour aux annonces</a>
-            </div>
-        </div>
+  <div class="container">
+    <div class="row">
+      <div class="col s12 12">
+        <h2 class="py-4">Mon profil :</h2>
+      </div>
+
+      <div class="col s6 6">
+        <form action="<?= '../models/users.php' ?>" method="post">
+
+          <?= displayUserInfo() ?>
+
+          <input type="submit" name="submit_update" class="btn cyan accent-3" value="Mettre à jour">
+        </form>
+      </div>
+
+      <div class="col s6 6">
+        <a href="<?= URLROOT . '/libraries/views/create-annonce.php' ?>" class="btn cyan accent-3 col s12 12">Publier une nouvelle annonce</a><br /><br />
+
+        <a href="#modalAnn" class="modal-trigger btn cyan accent-3 col s12 12 
+          <?php if (counter() < 1) {
+            echo 'disabled';
+          } ?>" data-toggle="modal" data-target="#listingAnnonces">
+          Voir mes annonces
+          <span class="badge badge-primary badge-pill"><?= counter() ?></span>
+        </a><br /><br />
+
+        <a href="#modalRes" class="btn cyan accent-3 col s12 12 
+          <?php if ($count2 < 1) {
+            echo 'disabled';
+          } ?>" data-toggle="modal" data-target="#listingResa">Voir mes réservations
+          <span class="badge badge-primary badge-pill">10</span>
+        </a><br /><br /><br />
+
+        <a href="<?= URLROOT . '/libraries/views/annonces.php' ?>" class="btn cyan accent-3 col s12 12">Retour aux annonces</a>
+      </div>
     </div>
+  </div>
 </section>
 
-<div class="modal fade" id="listingResa" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog listings" role="document">
-        <div class="modal-content text-center">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Mes annonces</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-            </div>
-        </div>
-    </div>
+<!-- MODAL ANNONCES -->
+<div id="modalAnn" class="modal" style="position: relative; padding: 2rem 3rem; width: 68%; margin-bottom: 40px">
+  <h5>Vos annonces publiées</h5>
+  <table class="highlight responsive-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Date début</th>
+        <th>Date fin</th>
+        <th>Réservé</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <?= displayUserAnnonces(); ?>
+    </tbody>
+    <a href="#" style="font-size: 1.5rem; position: absolute; right: 1rem; top: 5px">&#10006;</a>
+  </table>
 </div>
+
 <?php require('templates/footer.php'); ?>

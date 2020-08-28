@@ -11,3 +11,4 @@ start.addEventListener('input', (e) => {
   let newTomorrow = tomorrow.toISOString().split('T')[0]
   document.getElementsByName("end_date")[0].min = newTomorrow;
 })
+

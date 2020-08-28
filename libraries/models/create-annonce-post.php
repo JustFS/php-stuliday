@@ -1,4 +1,5 @@
 <?php
+require_once($_SERVER['DOCUMENT_ROOT'] . '/php-stuliday/config/config.php');
 require('connect.php');
 
 if (
@@ -49,8 +50,7 @@ if (
 
 				$sth->execute();
 
-        // header('Location : ../views/lobby.php');
-        echo 'ok !';
+        header('Location:' . URLROOT . '/index.php');
 			} else {
 				echo 'empty';
 			}
