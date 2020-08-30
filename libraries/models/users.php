@@ -20,15 +20,15 @@ if (!empty($_POST['lastName']) || !empty($_POST['firstName']) || !empty($_POST['
   header('Location: /php-stuliday/index.php');
 };
 
-function counter()
+function counter($table, $target)
 {
   global $db;
   $id = $_SESSION['id'];
-  $sql = $db->query("SELECT COUNT(*) FROM annonces WHERE author_article=$id");
+  $sql = $db->query("SELECT COUNT(*) FROM $table WHERE $target=$id");
 
-  $annoncesCount = $sql->fetch();
+  $count = $sql->fetch();
 
-  return $annoncesCount[0];
+  return $count[0];
 }
 
 function displayUserInfo()

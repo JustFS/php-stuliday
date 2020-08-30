@@ -33,8 +33,8 @@ function displayAnnonces()
 
     <!-- Modal Structure -->
     <div id="modal<?= $annonces['id'] ?>" class="modal card-panel" style="top: 100px; width: 75%; padding: 10px 1rem; max-height: 85%">
-      <a href="#" style="font-size: 1.5rem; position: absolute; right: 1rem; top: 5px">&#10006;</a>  
-    <div class="modal-content">
+      <a href="#" style="font-size: 1.5rem; position: absolute; right: 1rem; top: 5px">&#10006;</a>
+      <div class="modal-content">
         <h5 style="text-transform: uppercase" class="center-align"><?= $annonces['title']; ?></h5>
 
         <div class="row valign-wrapper">
@@ -45,7 +45,7 @@ function displayAnnonces()
 
         <div class="row">
           <div class="col s12 m6">Date de début : <?= date('d-m-Y', strtotime($annonces['start_date'])); ?></div>
-          <div class="col s12 m6">Date de fin :<?= date('d-m-Y', strtotime($annonces['end_date'])); ?></div>
+          <div class="col s12 m6">Date de fin : <?= date('d-m-Y', strtotime($annonces['end_date'])); ?></div>
         </div>
 
         <div class="">
@@ -86,6 +86,30 @@ function displayUserAnnonces()
       <td>
         <form action="/php-stuliday/libraries/models/delete-annonce.php?id=<?= $annonces['id'] ?>" method="get">
           <input type="submit" value="supprimer" class="btn btn cyan accent-3"></input>
+        </form>
+      </td>
+    </tr>
+
+  <?php
+  }
+};
+
+function displayUserBookings()
+{
+  global $db;
+  $id = $_SESSION['id'];
+
+  $sql = $db->query("SELECT * FROM reservations WHERE id_user=$id");
+  $sql->setFetchMode(PDO::FETCH_ASSOC);
+
+  while ($bookings = $sql->fetch()) {
+  ?>
+    <tr>
+      <td><?= date('d-m-Y', strtotime($bookings['start_date'])); ?></td>
+      <td><?= date('d-m-Y', strtotime($bookings['end_date'])); ?></td>
+      <td>
+        <form action="/php-stuliday/libraries/models/delete-annonce.php?id=<?= $bookings['id'] ?>" method="get">
+          <input type="submit" value="Annuler" class="btn btn cyan accent-3"></input>
         </form>
       </td>
     </tr>

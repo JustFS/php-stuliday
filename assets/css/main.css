@@ -1,27 +1,3 @@
-* {
-  box-sizing: border-box;
-}
-body {
-  background: rgb(246, 246, 246);
-}
-a {
-  margin: 0 !important;
-}
-main {
-  margin-top: 150px;
-}
-.main-img {
-  position: absolute;
-  z-index: -1;
-  height: 100% !important;
-  width: 100%;
-  object-fit: cover;
-  margin-top: -39px;
-}
-.nav-wrapper {
-  padding: 0 2rem;
-  margin: 0;
-}
 .modal:target {
   display: block !important;
 }

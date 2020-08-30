@@ -4,10 +4,6 @@ require('../models/connect.php');
 require('templates/header.php');
 include('templates/nav.php');
 
-
-$root = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/';
-
-
 // SIGNUP
 if (isset($_POST['submit-signup'])) {
 	$user_email = htmlspecialchars($_POST['user_email_signup']);
@@ -28,16 +24,16 @@ if (isset($_POST['submit-signup'])) {
 				$sth->bindValue(':password', $user_pass);
 
 				if ($sth->execute()) {
-					$message = "<div class='green'>Votre compte a bien été créé</div>";
+					$message = "<h5 class='card green'>Votre compte a bien été créé</h5>";
 				}
 			} else {
-				$message = "<div class='red'>Les mots de passe de concordent pas</div>";
+				$message = "<div class='card red'>Les mots de passe de concordent pas</div>";
 			}
 		} else {
-			$message = "<div class='red'>Veuillez bien remplir les champs</div>";
+			$message = "<div class='card red'>Veuillez bien remplir les champs</div>";
 		}
 	} else {
-		$message = "<div class='red'>Une erreur vient de se produire veuillez rééssayer.</div>";
+		$message = "<div class='card red'>Une erreur vient de se produire veuillez rééssayer.</div>";
 	}
 
 	// SIGNIN

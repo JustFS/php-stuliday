@@ -1,9 +1,12 @@
-<?php require_once($_SERVER['DOCUMENT_ROOT'] . '/php-stuliday/config/config.php'); 
+<?php 
+
+require_once($_SERVER['DOCUMENT_ROOT'] . '/php-stuliday/config/config.php'); 
+require_once($_SERVER['DOCUMENT_ROOT'] . '/php-stuliday/config/session.php'); 
 
 ?>
 
 <nav class="row">
-  <div class="nav-wrapper cyan accent-3">
+  <div class="nav-wrapper cyan accent-3" style=" padding: 0 2rem; margin: 0;">
     <a class="brand-logo" href="<?= URLROOT . '/index.php' ?>">Stuliday</a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
       <li class="">

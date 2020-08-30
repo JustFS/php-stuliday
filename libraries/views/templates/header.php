@@ -1,4 +1,9 @@
-<?php require_once($_SERVER['DOCUMENT_ROOT'] . '/php-stuliday/config/config.php'); ?>
+<?php 
+
+require_once($_SERVER['DOCUMENT_ROOT'] . '/php-stuliday/config/config.php'); 
+require_once($_SERVER['DOCUMENT_ROOT'] . '/php-stuliday/config/session.php'); 
+
+?>
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -13,4 +18,4 @@
 	<link href="<?= URLROOT . '/assets/css/main.css'?>" type="text/css" rel="stylesheet">
 </head>
 
-<body>
+<body style="background: rgb(246, 246, 246)">

@@ -18,7 +18,7 @@ while ($annonce = $sql->fetch()) {
     <h3>Réserver votre séjour</h3>
     <div class="row">
       <div class="col s12 m12">
-        <form action="../models/booking-post.php" method="post">
+        <form action="../models/booking-post.php?annonceId=<?= $annonceId ?>" method="post">
           <div class="card-panel hoverable">
             <div class="" style="display: flex; justify-content: space-between">
               <div class="card-image center-align">
@@ -26,17 +26,18 @@ while ($annonce = $sql->fetch()) {
               </div>
               <div class="right-align">
                 <h4 style="text-transform: uppercase" class="cyan-text"><?= $annonce['title']; ?></h4>
-                <h4><?= $annonce['price'] ?> € / nuit</h4>
+                <h6><span id="nightPrice"><?= $annonce['price'] ?></span> € / nuit</h6><br/>
+                <h4>Total : <span id="totalDays"></span> €</h4>
               </div>
             </div>
             <br /><br />
 
             <div class="input-field col s6">
-              <input id="start_date" value="<?= $annonce['start_date'] ?>" name="start_date" type="date" required class="validate">
+              <input id="start_date" min=<?=$annonce['start_date'] ?> value="<?= $annonce['start_date'] ?>" name="start_date" type="date" required class="validate">
             </div>
 
             <div class="input-field col s6">
-              <input id="end_date" value="<?= $annonce['end_date'] ?>" name="end_date" type="date" required class="validate">
+              <input id="end_date" min=<?=$annonce['start_date'] ?> value="<?= $annonce['end_date'] ?>" name="end_date" type="date" required class="validate">
             </div>
 
             <div class="card-action right-align">
@@ -49,4 +50,6 @@ while ($annonce = $sql->fetch()) {
   </div>
 <?php
 };
+
+require 'templates/footer.php';
 ?>

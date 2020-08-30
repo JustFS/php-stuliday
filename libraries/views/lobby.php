@@ -6,16 +6,16 @@ require('templates/nav.php');
 ?>
 
 <section>
-	<img class="main-img" src="assets/img/main-bg.jpg">
+	<img class="main-img" src="assets/img/main-bg.jpg" style="position: absolute; z-index: -1; height: 100% !important; width: 100%; object-fit: cover; margin-top: -39px;">
 	<div class="container main center-align">
 		<div class="row">
 			<div class="col s12 m12">
-				<div class="card cyan accent-3 center-align">
+				<div class="card cyan accent-3 center-align" style="margin-top: 6rem">
 					<div class="card-content white-text text-center">
-						<h1 class="">Bienvenue sur Stuliday !</h1>
+						<h1 class="">Bienvenue sur Stuliday</h1>
 						<div class="card-action">
 							<?php 
-								if (empty($_SESSION)): ?> <p class="lead"> <br> <a href='libraries/views/login.php'> Connectez-vous </a>ou<a href='libraries/views/login.php'> Inscrivez-vous</a></p> <?php 
+								if (empty($_SESSION)): ?> <p class="lead"> <br> <a href='libraries/views/login.php' style="font-weight: bold; color: #6c6b6a; margin: 0 1.5rem">Connectez-vous </a>ou<a href='libraries/views/login.php' style="font-weight: bold; color: #6c6b6a; margin: 0 1.5rem"> Inscrivez-vous</a></p> <?php 
                 else: ?>
                 <br/>
 									<a href="libraries/views/create-annonce.php">

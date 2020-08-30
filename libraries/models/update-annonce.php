@@ -24,11 +24,11 @@ while ($annonces = $sql->fetch()) {
           </div>
 
           <div class="input-field col s6">
-            <input id="start_date" value="<?= $annonces['start_date'] ?>" name="start_date" type="date" required class="validate">
+            <input id="start_date" min=<?=$annonces['start_date'] ?> value="<?= $annonces['start_date'] ?>" name="start_date" type="date" required class="validate">
           </div>
 
           <div class="input-field col s6">
-            <input id="end_date" value="<?= $annonces['end_date'] ?>" name="end_date" type="date" required class="validate">
+            <input id="end_date" min=<?=$annonces['start_date'] ?> value="<?= $annonces['end_date'] ?>" name="end_date" type="date" required class="validate">
           </div>
 
           <div class="input-field col s12">
