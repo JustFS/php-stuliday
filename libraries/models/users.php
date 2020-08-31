@@ -1,73 +1,43 @@
 <?php
-require_once('connect.php');
 
-// UPDATE POST
-if (!empty($_POST['lastName']) || !empty($_POST['firstName']) || !empty($_POST['email'])) {
+require_once 'Model.php';
 
-  $lastName = htmlspecialchars($_POST['lastName']);
-  $firstName = htmlspecialchars($_POST['firstName']);
-  $email = htmlspecialchars($_POST['email']);
-  $id = $_SESSION['id'];
-
-  $sth = $db->prepare("UPDATE users SET lastName=:lastName, firstName=:firstName, email=:email WHERE id=$id");
-
-  $sth->bindValue(':lastName', $lastName);
-  $sth->bindValue(':firstName', $firstName);
-  $sth->bindValue(':email', $email);
-
-  $sth->execute();
-
-  header('Location: /php-stuliday/index.php');
-};
-
-function counter($table, $target)
+class User extends Model
 {
-  global $db;
-  $id = $_SESSION['id'];
-  $sql = $db->query("SELECT COUNT(*) FROM $table WHERE $target=$id");
 
-  $count = $sql->fetch();
+  function update($id)
+  {
+    $sth = $this->pdo->prepare("UPDATE users SET lastName=:lastName, firstName=:firstName, email=:email WHERE id=$id");
 
-  return $count[0];
-}
-
-function displayUserInfo()
-{
-  global $db;
-  $id = $_SESSION['id'];
-  $sql = $db->query("SELECT * FROM users WHERE id=$id");
-  $sql->setFetchMode(PDO::FETCH_ASSOC);
-
-  while ($user = $sql->fetch()) {
-?>
-    <div class="form-group">
-      <label for="lastName">Nom</label>
-      <input type="text" name="lastName" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Renseigner votre nom" value="<?= $user['lastName']; ?>">
-    </div>
-    <div class="form-group">
-      <label for="firstName">Prénom</label>
-      <input type="text" name="firstName" id="exampleInputPassword" placeholder="Renseigner votre prénom" value="<?= $user['firstName']; ?>">
-    </div>
-    <div class="form-group">
-      <label for="email">Email</label>
-      <input type="email" name="email" id="exampleInputEmail" placeholder="Renseigner votre Email" aria-describedby="emailHelp" value="<?= $user['email']; ?>">
-    </div>
-<?php
+    return $sth;
   }
-}
 
-function displayAllUsers()
-{
-  global $db;
-  $sql = $db->query("SELECT * FROM users");
-  $sql->setFetchMode(PDO::FETCH_ASSOC);
+  function info()
+  {
+    $id = $_SESSION['id'];
+    $sql = $this->pdo->query("SELECT * FROM users WHERE id=$id");
+    $sql->setFetchMode(PDO::FETCH_ASSOC);
 
-  while ($user = $sql->fetch()) {
-  ?>
-    <div class="card">
-      <h2>User n° <?= $user['id']; ?></h2>
-      <p><?= $user['email']; ?></p>
-    </div>
-<?php
+    return $sql;
+  }
+
+  function annonces()
+  {
+    $id = $_SESSION['id'];
+
+    $sql = $this->pdo->query("SELECT * FROM annonces WHERE author_article=$id");
+    $sql->setFetchMode(PDO::FETCH_ASSOC);
+
+    return $sql;
+  }
+
+  function bookings()
+  {
+    $id = $_SESSION['id'];
+
+    $sql = $this->pdo->query("SELECT * FROM reservations WHERE id_user=$id");
+    $sql->setFetchMode(PDO::FETCH_ASSOC);
+
+    return $sql;
   }
 };

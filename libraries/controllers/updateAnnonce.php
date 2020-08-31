@@ -1,5 +1,6 @@
 <?php
-require_once('connect.php');
+
+$model = new Annonces();
 
 if (
   !empty($_POST['title'])
@@ -22,8 +23,7 @@ if (
   $price = htmlspecialchars($_POST['price']);
   $id = $_GET['id'];
 
-
-  $sth = $db->prepare("UPDATE annonces SET title=:title, start_date=:start_date, end_date=:end_date,description=:description, address_article=:address_article, city=:city, category=:category,price=:price, image_url=:image_url WHERE id=$id");
+  $sth = $model->update($id);
 
   $sth->bindValue(':title', $title);
   $sth->bindValue(':start_date', $start_date);

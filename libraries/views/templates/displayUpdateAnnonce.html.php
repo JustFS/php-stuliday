@@ -1,23 +1,13 @@
 <?php
-$page = 'update';
 
-require_once('connect.php');
-require('../views/templates/header.php');
-require('../views/templates/nav.php');
-
-
-global $db;
-$id = $_GET['id'];
-
-$sql = $db->query("SELECT * FROM annonces WHERE id=$id");
-$sql->setFetchMode(PDO::FETCH_ASSOC);
-
+$model = new Annonces();
+$sql = $model->getAnnonce();
 while ($annonces = $sql->fetch()) {
 ?>
   <div class="container">
     <h2>Editez votre annonce</h2>
     <div class="row center-align">
-      <form action="update-annonce-post.php?id=<?= $id ?>" method="post" class="col s12" enctype="multipart/form-data">
+      <form action="updateAnnonce.php?id=<?= $id ?>" method="post" class="col s12" enctype="multipart/form-data">
         <div class="row">
           <div class="input-field col s12">
             <input id="title" name="title" type="text" value="<?= $annonces['title'] ?>" required class="validate">
@@ -54,7 +44,6 @@ while ($annonces = $sql->fetch()) {
           <div>
             <input type="submit" value="Valider modifications" class="btn cyan accent-3 col s6" />
             </>
-
       </form>
     </div>
   </div>

@@ -2,7 +2,7 @@
 
 session_start();
 
-if (empty($_SESSION) && $page == 'annonce' || empty($_SESSION) && $page == 'single-annonce') {
+if (empty($_SESSION) && $page == 'Annonces' || empty($_SESSION) && $page == 'Annonce') {
 	header('Location: login.php');
 	exit;
 }

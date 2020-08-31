@@ -1,6 +1,10 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'] . '/php-stuliday/config/config.php');
-require('connect.php');
+
+require_once '../config/session.php';
+require_once '../config/database.php';
+require_once '../models/Annonces.php';
+
+$model = new Annonces();
 
 if (
 	!empty($_POST['title'])
@@ -35,7 +39,7 @@ if (
 
 			if ($move_result) {
 
-				$sth = $db->prepare("INSERT INTO annonces (title, start_date, end_date,description, address_article, city, category,price, image_url, author_article) VALUES (:title, :start_date, :end_date,:description, :address_article, :city, :category,:price, :image_url, :author_article)");
+        $sth = $model->create();
 
 				$sth->bindValue(':title', $title);
 				$sth->bindValue(':start_date', $start_date);
@@ -50,7 +54,7 @@ if (
 
 				$sth->execute();
 
-        header('Location:' . URLROOT . '/index.php');
+        header('Location: ../../index.php');
 			} else {
 				echo 'empty';
 			}

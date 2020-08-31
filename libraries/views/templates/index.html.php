@@ -1,12 +1,5 @@
-<?php
-
-require('templates/header.php');
-require('templates/nav.php');
-
-?>
-
 <section>
-	<img class="main-img" src="assets/img/main-bg.jpg" style="position: absolute; z-index: -1; height: 100% !important; width: 100%; object-fit: cover; margin-top: -39px;">
+	<img class="main-img" src="assets/img/main-bg.jpg" style="position: absolute; z-index: -1; height: 100vh !important; width: 100%; object-fit: cover; margin-top: -43px;">
 	<div class="container main center-align">
 		<div class="row">
 			<div class="col s12 m12">
@@ -18,7 +11,7 @@ require('templates/nav.php');
 								if (empty($_SESSION)): ?> <p class="lead"> <br> <a href='libraries/views/login.php' style="font-weight: bold; color: #6c6b6a; margin: 0 1.5rem">Connectez-vous </a>ou<a href='libraries/views/login.php' style="font-weight: bold; color: #6c6b6a; margin: 0 1.5rem"> Inscrivez-vous</a></p> <?php 
                 else: ?>
                 <br/>
-									<a href="libraries/views/create-annonce.php">
+									<a href="libraries/views/createAnnonce.php">
 										<div class="btn blue lighten-1 container">
 											Créer une annonce
 										</div>
@@ -40,5 +33,3 @@ require('templates/nav.php');
 		</div>
 	</div>
 </section>
-
-<?php require('templates/footer.php'); ?>

@@ -1,7 +1,7 @@
 <?php 
 
-require_once($_SERVER['DOCUMENT_ROOT'] . '/php-stuliday/config/config.php'); 
-require_once($_SERVER['DOCUMENT_ROOT'] . '/php-stuliday/config/session.php'); 
+require_once($_SERVER['DOCUMENT_ROOT'] . '/php-stuliday/libraries/config/config.php'); 
+require_once($_SERVER['DOCUMENT_ROOT'] . '/php-stuliday/libraries/config/session.php'); 
 
 ?>
 

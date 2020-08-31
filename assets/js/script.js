@@ -14,7 +14,7 @@ document.addEventListener('input', (e) => {
   let newTomorrow = tomorrow.toISOString().split('T')[0]
   end.min = newTomorrow;
   start.max = e.target.value;
-});
+}); 
 
 const substractDate = () => {
   const date1 = new Date(start.value);
@@ -23,7 +23,7 @@ const substractDate = () => {
   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
   
   let nightPrice =  document.getElementById('nightPrice').innerHTML;
-  days = document.getElementById('totalDays').innerHTML = diffDays * nightPrice;
+  document.getElementById('totalDays').innerHTML = diffDays * nightPrice;
 }
 
 document.addEventListener('input', () => {

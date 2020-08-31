@@ -1,15 +1,8 @@
-<?php
-
-require('templates/header.php');
-require('templates/nav.php');
-
-
-?>
 <div class="container">
   <h2>Déposer une annonce</h2>
 
   <div class="row center-align">
-    <form action="../models/create-annonce-post.php" method="post" class="col s12" enctype="multipart/form-data">
+    <form action="../controllers/createAnnonce.php" method="post" class="col s12" enctype="multipart/form-data">
       <div class="row">
         <div class="input-field col s12">
           <input id="title" name="title" type="text" required class="validate">
@@ -63,6 +56,3 @@ require('templates/nav.php');
     </form>
   </div>
 </div>
-
-
-<?php require('templates/footer.php'); ?>

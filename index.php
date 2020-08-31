@@ -1,9 +1,10 @@
 <?php
 
-$page = 'index';
-require_once('config/config.php');
-require_once('config/session.php');
+$page = 'Accueil';
+require_once 'libraries/config/config.php';
+require_once 'libraries/config/session.php';
 
-require('libraries/views/lobby.php');
+require_once 'libraries/utils.php';
+render('libraries/views/templates/index', 'libraries/views/');
 
 ?>
