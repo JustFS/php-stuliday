@@ -1,5 +1,5 @@
 <section>
-	<img class="main-img" src="assets/img/main-bg.jpg" style="position: absolute; z-index: -1; height: 91vh !important; width: 100%; object-fit: cover; margin-top: -43px;">
+	<img class="main-img" src="assets/img/main-bg.jpg" style="position: absolute; z-index: -1; height: 100vh !important; width: 100%; object-fit: cover; margin-top: -43px;">
 	<div class="container main center-align">
 		<div class="row">
 			<div class="col s12 m12">
