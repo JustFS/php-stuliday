@@ -124,7 +124,6 @@
       while ($bookings = $sql->fetch()) {
       ?>
         <tr>
-          <?= $bookings['aid'] ?>
           <td><?= $bookings['title'] ?></td>
           <td><img src="<?= $bookings['image_url'] ? '../../assets/uploads/' . $bookings['image_url'] : '../../assets/img/test.jpg' ?>" alt="" style="width: 80px; border-radius: 10px;"></td>
           <td><?= date('d-m-Y', strtotime($bookings['start_date'])); ?></td>

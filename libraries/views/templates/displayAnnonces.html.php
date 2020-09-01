@@ -31,11 +31,11 @@
                 <br /><br />
 
                 <div class="input-field col s6">
-                  <input id="start_date" min=<?= $annonce['start_date'] ?> value="<?= $annonce['start_date'] ?>" name="start_date" type="date" required class="validate">
+                  <input id="book_start_date" min=<?= $annonce['start_date'] ?> max=<?= $annonce['end_date'] ?> value="<?= $annonce['start_date'] ?>" name="start_date" type="date" required class="validate">
                 </div>
 
                 <div class="input-field col s6">
-                  <input id="end_date" min=<?= $annonce['start_date'] ?> value="<?= $annonce['end_date'] ?>" name="end_date" type="date" required class="validate">
+                  <input id="book_end_date" min=<?= $annonce['start_date'] ?> max=<?= $annonce['end_date'] ?> value="<?= $annonce['end_date'] ?>" name="end_date" type="date" required class="validate">
                 </div>
 
                 <div class="card-action right-align">

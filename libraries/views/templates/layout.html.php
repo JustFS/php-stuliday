@@ -13,7 +13,7 @@
 <body style="background: rgb(246, 246, 246); max-height: 100vh !important">
 
 
-  <?= include 'nav.html.php' ?>
+  <?php include 'nav.html.php' ?>
   
   <?= $pageContent ?>
 

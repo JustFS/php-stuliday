@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Passe la réservation dans la DB et passe la valeur active à 0
+ */
+
 require_once '../config/session.php';
 require_once '../models/Annonces.php';
 
@@ -28,5 +32,5 @@ if (!empty($_POST['start_date']) && !empty($_POST['end_date'])) {
 
   header('Location: ../views/profile.php');
 } else {
-  echo 'something went wrong';
-}
+  echo 'Date mal remplies';
+};

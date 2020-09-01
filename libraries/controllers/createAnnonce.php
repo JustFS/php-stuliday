@@ -56,12 +56,12 @@ if (
 
         header('Location: ../../index.php');
 			} else {
-				echo 'empty';
+				echo 'Empty';
 			}
 		} else {
-			echo 'mauvais format';
+			echo 'Mauvais format';
 		}
 	} else {
-		echo 'trop volumineux';
+		echo 'Trop volumineux';
 	}
 }
