@@ -1,5 +1,7 @@
 <?php
 
+require_once '../models/Annonces.php';
+
 $model = new Annonces();
 
 if (
@@ -21,7 +23,7 @@ if (
   $address_article = htmlspecialchars($_POST['address_article']);
   $category = htmlspecialchars($_POST['category']);
   $price = htmlspecialchars($_POST['price']);
-  $id = $_GET['id'];
+  $id = htmlspecialchars($_GET['id']);
 
   $sth = $model->update($id);
 
@@ -33,7 +35,6 @@ if (
   $sth->bindValue(':city', $city);
   $sth->bindValue(':category', $category);
   $sth->bindValue(':price', $price);
-  $sth->bindValue(':image_url', $img_name);
 
   $sth->execute();
 

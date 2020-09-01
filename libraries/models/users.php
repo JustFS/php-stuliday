@@ -14,8 +14,7 @@ class User extends Model
 
   function info()
   {
-    $id = $_SESSION['id'];
-    $sql = $this->pdo->query("SELECT * FROM users WHERE id=$id");
+    $sql = $this->pdo->query("SELECT * FROM users WHERE id=$this->idSession");
     $sql->setFetchMode(PDO::FETCH_ASSOC);
 
     return $sql;
@@ -23,9 +22,7 @@ class User extends Model
 
   function annonces()
   {
-    $id = $_SESSION['id'];
-
-    $sql = $this->pdo->query("SELECT * FROM annonces WHERE author_article=$id");
+    $sql = $this->pdo->query("SELECT * FROM annonces WHERE author_article=$this->idSession");
     $sql->setFetchMode(PDO::FETCH_ASSOC);
 
     return $sql;
@@ -33,9 +30,7 @@ class User extends Model
 
   function bookings()
   {
-    $id = $_SESSION['id'];
-
-    $sql = $this->pdo->query("SELECT * FROM reservations WHERE id_user=$id");
+    $sql = $this->pdo->query("SELECT r.*, a.id as aid, a.title, a.image_url FROM reservations r LEFT JOIN annonces a ON r.id_annonce=a.id WHERE id_user=$this->idSession");
     $sql->setFetchMode(PDO::FETCH_ASSOC);
 
     return $sql;

@@ -10,10 +10,11 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 </head>
 
-<body style="background: rgb(246, 246, 246)">
+<body style="background: rgb(246, 246, 246); max-height: 100vh !important">
 
 
   <?= include 'nav.html.php' ?>
+  
   <?= $pageContent ?>
 
 

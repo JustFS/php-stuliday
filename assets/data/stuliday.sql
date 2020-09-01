@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : jeu. 27 août 2020 à 13:25
--- Version du serveur :  10.4.14-MariaDB
--- Version de PHP : 7.4.9
+-- Généré le : mar. 01 sep. 2020 à 13:09
+-- Version du serveur :  10.4.13-MariaDB
+-- Version de PHP : 7.4.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -48,7 +48,10 @@ CREATE TABLE `annonces` (
 --
 
 INSERT INTO `annonces` (`id`, `title`, `description`, `city`, `category`, `image_url`, `address_article`, `active`, `price`, `author_article`, `start_date`, `end_date`, `publish_date`) VALUES
-(1, 'Joli T3 au coeur de Bordeaux', 'ELICUHzelkjnbkled hicuezilzebiuze heziuhzeviu ioezvuheizvuhezv iuhezviuvhze zeviuhezviuhe vzihzeviuvezhiuzehvezuhzeui vhevzihve', 'Bordeaux', 'T3', '', '15 Rue Ste Catherine, 33000 Bordeaux', 1, 150, 5, '2020-08-28', '2020-08-31', '2020-08-26 08:29:56');
+(40, 'Loft à Arlac', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio aperiam deserunt, consequuntur dolorem possimus illum sit placeat architecto asperiores totam explicabo accusamus unde, eius reprehenderit optio sint! Nobis, aut repellat Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quod fuga odit ducimus in expedita deserunt, pariatur voluptas quas dolorem modi. Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, repellat expedita hic aliquid distinctio blanditiis.', 'Mérignac', 'Loft', '5f4e2a98afd8b_1.jpg', '74 cours Pasteur', 1, 70, 8, '2020-09-02', '2020-09-18', '2020-09-01 11:03:52'),
+(41, 'Cocooning aux Chartrons', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio aperiam deserunt, consequuntur dolorem possimus illum sit placeat architecto asperiores totam explicabo accusamus unde, eius reprehenderit optio sint! Nobis, aut repellat Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quod fuga odit ducimus in expedita deserunt, pariatur voluptas quas dolorem modi. Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, repellat expedita hic aliquid distinctio blanditiis.', 'Bordeaux', 'Appartement', '5f4e2ad4bc93e_2.jpg', '74 rue François Hollande', 1, 54, 8, '2020-09-04', '2020-10-02', '2020-09-01 11:04:52'),
+(42, 'Cave au Aubiers', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio aperiam deserunt, consequuntur dolorem possimus illum sit placeat architecto asperiores totam explicabo accusamus unde, eius reprehenderit optio sint! Nobis, aut repellat Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quod fuga odit ducimus in expedita deserunt, pariatur voluptas quas dolorem modi. Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, repellat expedita hic aliquid distinctio blanditiis.', 'Bordeaux', 'Cave', '5f4e2b126cde0_3.jpg', '22 rue de Los Aubios', 1, 13, 8, '2020-09-22', '2020-12-24', '2020-09-01 11:05:54'),
+(43, 'Maison de maître à Bacalan', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio aperiam deserunt, consequuntur dolorem possimus illum sit placeat architecto asperiores totam explicabo accusamus unde, eius reprehenderit optio sint! Nobis, aut repellat Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quod fuga odit ducimus in expedita deserunt, pariatur voluptas quas dolorem modi. Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, repellat expedita hic aliquid distinctio blanditiis.', 'Bordeaux', 'Maison', '5f4e2b4444f2c_4.jpg', '45 avenue Nicolas Sarkozy', 1, 117, 8, '2020-09-29', '2020-11-20', '2020-09-01 11:06:44');
 
 -- --------------------------------------------------------
 
@@ -59,6 +62,8 @@ INSERT INTO `annonces` (`id`, `title`, `description`, `city`, `category`, `image
 CREATE TABLE `reservations` (
   `id` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
+  `start_date` date NOT NULL,
+  `end_date` date NOT NULL,
   `id_annonce` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -81,10 +86,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `email`, `password`, `firstName`, `lastName`) VALUES
-(5, 'abc@abc.fr', '$2y$10$8leejlgmAqseWG43PTDu2.WotSLrvJ.MX2kxVgdev0JQ8ikVgeJRO', '', ''),
-(6, 'aaa@aaa.fr', '$2y$10$oB1vl3gWgo.t0NAaPXqvSuTw/I.M1EQrQaABZNHsy.reOdn/lHSMG', '', ''),
-(7, 'zzz@zzz.fr', '$2y$10$t/Mq86Ke5YkGj5vcLR7waOoAamRlI24XEdthR2REiMf8bYKfoKqI.', '', ''),
-(8, 'jul.az@hotmail.com', '$2y$10$Ml.Ud.xSM6zRkedhoXuSu.yl4KPOP0UgmX/Itd28rLObE0.MRlrQG', '', '');
+(8, 'jul.az@hotmail.com', '$2y$10$Ml.Ud.xSM6zRkedhoXuSu.yl4KPOP0UgmX/Itd28rLObE0.MRlrQG', 'Az', 'Julie'),
+(11, 'o@o.o', '$2y$10$tPiGysT0vso1yMiHYWES8eknEh9kRdMxwSg2GfxVvxjHR7MxMOcl2', 'Ju', 'Az');
 
 --
 -- Index pour les tables déchargées
@@ -120,19 +123,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT pour la table `annonces`
 --
 ALTER TABLE `annonces`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT pour la table `reservations`
 --
 ALTER TABLE `reservations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Contraintes pour les tables déchargées

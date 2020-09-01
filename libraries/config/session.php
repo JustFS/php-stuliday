@@ -1,5 +1,7 @@
 <?php
 
+require_once 'config.php';
+
 session_start();
 
 if (empty($_SESSION) && $page == 'Annonces' || empty($_SESSION) && $page == 'Annonce') {
@@ -8,5 +10,5 @@ if (empty($_SESSION) && $page == 'Annonces' || empty($_SESSION) && $page == 'Ann
 }
 if (isset($_GET['logout'])) {
 	session_destroy();
-	header('Location: index.php');
+	header('Location:' . URLROOT . '/index.php');
 }

@@ -75,7 +75,7 @@
                 </div>
               </div>
               <div class="card-content">
-                <p style="color: #222; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4; overflow: hidden"><?= $annonces['description'] ?></p>
+                <p style="color: #222; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4; overflow: hidden; text-align: justify;"><?= $annonces['description'] ?></p>
               </div>
               <div class="card-action">
                 <a href="#modal<?= $annonces['id'] ?>" class="btn cyan accent-3">En savoir plus</a>
@@ -89,26 +89,29 @@
         <!-- Modal Structure -->
         <div id="modal<?= $annonces['id'] ?>" class="modal card-panel" style="top: 100px; width: 75%; padding: 10px 1rem; max-height: 85%; :target{display: block};">
           <a href="#" style="font-size: 1.5rem; position: absolute; right: 1rem; top: 5px">&#10006;</a>
-          <div class="modal-content">
+          <div class="">
+            <br>
             <h5 style="text-transform: uppercase" class="center-align"><?= $annonces['title']; ?></h5>
+            <br><hr>
 
-            <div class="row valign-wrapper">
-              <p class="col s12 m4"><?= $annonces['city'] ?></p>
-              <p class="col s12 m4"><?= $annonces['address_article'] ?></p>
-              <p class="col s12 m4 cyan-text accent-3 right-align" style="font-size: 2rem"><?= $annonces['price'] ?> €</p>
+            <br/>
+            <div class="col s6 m6">
+              <div><strong><?= $annonces['city'] ?></strong></div>
+              <div>Adresse : <?= $annonces['address_article'] ?></div>
+              <div>Date de début : <?= date('d-m-Y', strtotime($annonces['start_date'])); ?></div>
+              <div>Date de fin : <?= date('d-m-Y', strtotime($annonces['end_date'])); ?></div>
             </div>
 
-            <div class="row">
-              <div class="col s12 m6">Date de début : <?= date('d-m-Y', strtotime($annonces['start_date'])); ?></div>
-              <div class="col s12 m6">Date de fin : <?= date('d-m-Y', strtotime($annonces['end_date'])); ?></div>
+            <div class="col s6 m6">
+              <p class="cyan-text accent-3 right-align" style="font-size: 3rem; margin: 1rem"><?= $annonces['price'] ?> €</p>
             </div>
 
-            <div class="">
-              <p><?= $annonces['description'] ?></p>
+            <div class="col s6 m6">
+              <p style='text-align: justify;'><?= $annonces['description'] ?></p>
             </div>
 
-            <div class="">
-              <img style="width: 25%; " src="<?= $annonces['image_url'] ? '../../assets/uploads/' . $annonces['image_url'] : '../../assets/img/test.jpg' ?>" class="img-responsive" alt="">
+            <div>
+              <img style="width: 25%; border-radius: 15px; margin: 1.5rem 2.5rem" src="<?= $annonces['image_url'] ? '../../assets/uploads/' . $annonces['image_url'] : '../../assets/img/test.jpg' ?>" class="img-responsive z-depth-1">
             </div>
           </div>
           <div class="modal-footer">

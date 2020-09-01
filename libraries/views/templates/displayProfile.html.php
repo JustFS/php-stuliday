@@ -37,12 +37,12 @@
       <div class="col s6 6">
         <a href="<?= 'createAnnonce.php' ?>" class="btn cyan accent-3 col s12 12">Publier une nouvelle annonce</a><br /><br />
 
-        <a href="#modalAnn" class="modal-trigger btn cyan accent-3 col s12 12 
+        <a href="#modalAnn" class="modal-trigger btn cyan accent-3 col s12 12" 
           <?php         
             $model = new Utils();
             $count1 = $model->counter('annonces', 'author_article');
-            if ($count1 < 1) {echo 'disabled'; } 
-          ?>">
+            if ($count1 == 0) {echo 'disabled'; } 
+          ?>>
             Voir mes annonces 
             <span class="badge"><?= $count1 ?></span>
         </a><br /><br />
@@ -90,7 +90,7 @@
           <td>
             <a href="/php-stuliday/libraries/views/updateAnnonce.php?id=<?= $annonces['id'] ?>" class="btn btn cyan accent-3">Modifier</a></td>
           <td>
-            <a href="/php-stuliday/libraries/controllers/deleteAnnonce.php?id=<?= $annonces['id'] ?>" class="btn btn cyan accent-3">Supprimer</a>            
+            <a href="/php-stuliday/libraries/controllers/delete.php?table=annonces&id=<?= $annonces['id'] ?>" class="btn btn cyan accent-3">Supprimer</a>            
           </td>
         </tr>
 
@@ -108,6 +108,8 @@
   <table class="highlight responsive-table">
     <thead>
       <tr>
+        <th>Annonce</th>
+        <th></th>
         <th>Date début</th>
         <th>Date fin</th>
       </tr>
@@ -122,10 +124,13 @@
       while ($bookings = $sql->fetch()) {
       ?>
         <tr>
+          <?= $bookings['aid'] ?>
+          <td><?= $bookings['title'] ?></td>
+          <td><img src="<?= $bookings['image_url'] ? '../../assets/uploads/' . $bookings['image_url'] : '../../assets/img/test.jpg' ?>" alt="" style="width: 80px; border-radius: 10px;"></td>
           <td><?= date('d-m-Y', strtotime($bookings['start_date'])); ?></td>
           <td><?= date('d-m-Y', strtotime($bookings['end_date'])); ?></td>
           <td>
-            <a href="/php-stuliday/libraries/controllers/deleteBooking.php?id=<?= $bookings['id'] ?>" class="btn btn cyan accent-3">
+            <a href="/php-stuliday/libraries/controllers/delete.php?table=reservations&id=<?= $bookings['id'] ?>&aid=<?= $bookings['aid'] ?>" class="btn btn cyan accent-3">
               Annuler réservation
             </a>
           </td>

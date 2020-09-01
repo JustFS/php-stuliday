@@ -7,7 +7,7 @@ class Annonces extends Model
  
   public function list()
   {
-    $sql = $this->pdo->query("SELECT * FROM annonces ORDER BY publish_date DESC");
+    $sql = $this->pdo->query("SELECT * FROM annonces a WHERE $this->idSession != author_article AND a.active != 0 ORDER BY publish_date DESC");
     $sql->setFetchMode(PDO::FETCH_ASSOC);
     
     return $sql;
@@ -15,7 +15,6 @@ class Annonces extends Model
   
   function create()
   {
-    
     $sth = $this->pdo->prepare("INSERT INTO annonces (title, start_date, end_date,description, address_article, city, category,price, image_url, author_article) VALUES (:title, :start_date, :end_date,:description, :address_article, :city, :category,:price, :image_url, :author_article)");
     
     return $sth;
@@ -28,9 +27,9 @@ class Annonces extends Model
     return $sth;
   }
 
-  function delete($type, $id)
+  function delete($table, $id)
   {
-    $sql = $this->pdo->query("DELETE FROM $type WHERE id='$id'");
+    $sql = $this->pdo->query("DELETE FROM $table WHERE id=$id");
 
     return $sql;
   }
@@ -58,5 +57,17 @@ class Annonces extends Model
 
     return $sth;
   }
+
+  /**
+   * Switcher active ou pas
+   */
+  function switchAnnonceBooked($annonceId)
+  {
+    $sql = $this->pdo->prepare("UPDATE annonces SET active=:active WHERE id=$annonceId");
+
+    return $sql;
+  }
+
 };
-  
+
+?>  

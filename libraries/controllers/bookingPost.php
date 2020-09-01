@@ -1,13 +1,17 @@
 <?php
 
-if (!isset($_POST['start_date']) && !isset($_POST['end_date'])) {
+require_once '../config/session.php';
+require_once '../models/Annonces.php';
+
+$model = new Annonces();
+
+if (!empty($_POST['start_date']) && !empty($_POST['end_date'])) {
 
   $startDate = htmlspecialchars($_POST['start_date']);
   $endDate = htmlspecialchars($_POST['end_date']);
-  $userId = $_SESSION['id'];
+  $userId = htmlspecialchars($_SESSION['id']);
   $annonceId = htmlspecialchars($_GET['annonceId']);
 
-  $model = new Annonces();
   $sth = $model->validateAnnonceBooked();
 
   $sth->bindValue(':start_date', $startDate);
@@ -16,6 +20,11 @@ if (!isset($_POST['start_date']) && !isset($_POST['end_date'])) {
   $sth->bindValue(':id_annonce', $annonceId);
 
   $sth->execute();
+
+  // switch booked value
+  $sql = $model->switchAnnonceBooked($annonceId);
+  $sql->bindValue(':active', 0);
+  $sql->execute();
 
   header('Location: ../views/profile.php');
 } else {

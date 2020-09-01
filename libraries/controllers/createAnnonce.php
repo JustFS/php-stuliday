@@ -24,7 +24,7 @@ if (
 	$address_article = htmlspecialchars($_POST['address_article']);
 	$category = htmlspecialchars($_POST['category']);
 	$price = htmlspecialchars($_POST['price']);
-	$user_id = $_SESSION['id'];
+	$user_id = htmlspecialchars($_SESSION['id']);
 	$file = $_FILES['image_url'];
 
 	if ($file['size'] <= 1000000) {

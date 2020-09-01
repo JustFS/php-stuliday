@@ -12,7 +12,7 @@ if (!empty($_POST['lastName']) || !empty($_POST['firstName']) || !empty($_POST['
   $lastName = htmlspecialchars($_POST['lastName']);
   $firstName = htmlspecialchars($_POST['firstName']);
   $email = htmlspecialchars($_POST['email']);
-  $id = $_SESSION['id'];
+  $id = htmlspecialchars($_SESSION['id']);
 
   $sth = $user->update($id);
 
